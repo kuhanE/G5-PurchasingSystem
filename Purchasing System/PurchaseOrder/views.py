@@ -297,3 +297,5 @@ def purchaseorderhistory(request):
             'rows':purchase_orders
         }
     return render(request,'PurchaseOrder/purchaseorderhistory.html',context)
+#JomBuat
+
