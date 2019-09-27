@@ -1,4 +1,18 @@
-﻿{% extends "app/layout.html" %}
+﻿<style>
+   input {
+  background-color:#ff6a00;
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+     </style>
+{% extends "app/layout.html" %}
 
 {% block content %}
 <div class="purcahseorderhistory margintop" action="menu" >
@@ -28,6 +42,22 @@
         <div class="margintop">
             <a type="submit" class="btn btn-info" href="/menu">Back</a>
         </div>
+           <br /><br />
+        <input type="button" id="btnGetCount" value="COUNT" color="blue" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+   $(function () {
+        $("#btnGetCount").click(function () {
+            var totalRowCount = $("#tblCustomers tr").length;
+            var rowCount = $("#tblCustomers td").closest("tr").length;
+
+            var message = "Total Row Count: " + totalRowCount;
+          
+            alert(message);
+        });
+    });
+</script>
+        <br /><br />
     </form>
        
 </div>
