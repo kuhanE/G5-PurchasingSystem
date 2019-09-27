@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
@@ -35,7 +34,7 @@ def invoiceform(request):
 @login_required
 def fillinginvoice(request):
 
-    global responsesItems
+    #global responsesItems
     context = {}
     pur_id = request.GET['pur_id']
     inv_id = random.randint(1000000,9999999)
@@ -45,7 +44,8 @@ def fillinginvoice(request):
         context = {
                 'title': 'Invoice Form',
                 'invoice_id': 'INV' + str(inv_id),
-                'purchase_order_id': inv_id, 
+                #'purchase_order_id': inv_id, 
+                'purchase_order_id': pur_id,
                 'staff_id' : purchase_orders.person_id.person_id,
                 'vendor_id': purchase_orders.vendor_id.vendor_id,
                 'rows':item_list
@@ -148,7 +148,7 @@ def invoicedetails(request):
     vendor_id = request.POST['vendor_id']
     description = request.POST['description']
     #purchaseorder = get_object_or_404(PurchaseOrder)
-    purchaseorder = PurchaseOrder.objects.get( purchaseorder= purchase_order_id )
+    purchaseorder = get_object_or_404(PurchaseOrder,purchase_order_id = purchase_order_id)
     staff_info = Person.objects.get(user_id = staff_id)
     vendor_info = Vendor.objects.get(vendor_id = vendor_id)
 
@@ -267,4 +267,4 @@ def invoicehistory(request):
         }
     return render(request,'Invoice/invoicehistory.html',context)
 
-#testingforInvoice
+#Version1.0
