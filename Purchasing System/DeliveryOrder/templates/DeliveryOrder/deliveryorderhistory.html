@@ -16,7 +16,10 @@
 
 {% block content %}
 <div class="purcahseorderhistory margintop" action="menu" >
-    
+    <br /><br />
+    <div align="center">
+        <input placeholder= "search" type="text" name="search" id="search" class="form-control"/>
+    </div>
     <form action="deliveryorderhistorydetails" method="GET">
         <table class="table table-striped margintop">
           <thead>
@@ -56,6 +59,34 @@
             alert(message);
         });
     });
+</script>
+       <script>
+
+    $(document).ready(function(){
+        $('#search').keyup(function(){
+            search_table($(this).val());
+        });
+   
+
+    function search_table(value){
+        $('#search_tbl tr').each(function(){
+            var found = 'false';
+            $(this).each(function () {
+                if ($(this).text().toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) >= 0)
+                {
+                    found = 'true';
+                }
+            });
+            if (found == 'true') {
+                $(this).show();
+            }
+            else
+            {
+                $(this).hide();
+            }
+        });
+    }
+          });
 </script>
         <br /><br />
     </form>
